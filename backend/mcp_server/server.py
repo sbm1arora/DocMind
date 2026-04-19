@@ -17,6 +17,7 @@ from mcp.server import Server
 from mcp.server.sse import SseServerTransport
 from mcp.types import Tool, TextContent
 from starlette.applications import Starlette
+from starlette.requests import Request
 from starlette.routing import Route
 
 from api.config import settings
@@ -24,7 +25,6 @@ from shared.logging_config import configure_logging
 
 logger = structlog.get_logger()
 
-DOCMIND_API = f"http://localhost:{settings.__class__.__config__.get('api_port', 8000)}"
 # MCP server talks to the main FastAPI backend over HTTP
 API_BASE = "http://localhost:8000/api/v1"
 
@@ -162,13 +162,23 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
 
 
 def create_mcp_app():
+    """Create the Starlette app for the MCP SSE server."""
     transport = SseServerTransport("/messages")
 
-    async def handle_sse(scope, receive, send):
-        async with mcp.run_session(transport) as session:
-            await transport.handle_sse(scope, receive, send)
+    async def handle_sse(request: Request):
+        async with transport.connect_sse(
+            request.scope, request.receive, request._send
+        ) as (read_stream, write_stream):
+            await mcp.run(
+                read_stream,
+                write_stream,
+                mcp.create_initialization_options(),
+            )
 
-    return Starlette(routes=[Route("/sse", endpoint=handle_sse)])
+    return Starlette(routes=[
+        Route("/sse", endpoint=handle_sse),
+        Route("/messages", endpoint=transport.handle_post_message, methods=["POST"]),
+    ])
 
 
 if __name__ == "__main__":
