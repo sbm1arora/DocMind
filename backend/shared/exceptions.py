@@ -1,0 +1,11 @@
+class DocMindError(Exception): pass
+class NotFoundError(DocMindError): pass
+class AuthenticationError(DocMindError): pass
+class AuthorizationError(DocMindError): pass
+class ValidationError(DocMindError): pass
+class GitHubError(DocMindError): pass
+class IngestionError(DocMindError): pass
+class EmbeddingError(DocMindError): pass
+class GenerationError(DocMindError): pass
+class WebhookError(DocMindError): pass
+class RateLimitError(DocMindError): pass

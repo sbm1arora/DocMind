@@ -1,0 +1,43 @@
+SUPPORTED_EXTENSIONS = {
+    "python": [".py"], "javascript": [".js",".mjs",".cjs"],
+    "typescript": [".ts",".tsx"], "go": [".go"],
+    "markdown": [".md",".mdx"], "yaml": [".yml",".yaml"],
+    "json": [".json"], "text": [".txt",".rst"],
+}
+ALL_CODE_EXTENSIONS = (
+    SUPPORTED_EXTENSIONS["python"] + SUPPORTED_EXTENSIONS["javascript"]
+    + SUPPORTED_EXTENSIONS["typescript"] + SUPPORTED_EXTENSIONS["go"]
+)
+ALL_DOC_EXTENSIONS = SUPPORTED_EXTENSIONS["markdown"] + SUPPORTED_EXTENSIONS["text"]
+EMBEDDING_MODEL = "text-embedding-3-large"
+EMBEDDING_DIMENSIONS = 2048
+GENERATION_MODEL = "claude-sonnet-4-6"
+RERANK_MODEL = "rerank-v3.5"
+REDIS_CHANNEL_INGESTION = "docmind:ingestion"
+REDIS_CHANNEL_AGENTS = "docmind:agents"
+REDIS_CHANNEL_WEBHOOKS = "docmind:webhooks"
+REDIS_PREFIX_RATE_LIMIT = "rl:"
+REDIS_PREFIX_QUERY_CACHE = "query:"
+REDIS_PREFIX_SESSION = "session:"
+QUALITY_THRESHOLD_GOOD = 0.8
+QUALITY_THRESHOLD_ACCEPTABLE = 0.6
+QUALITY_THRESHOLD_POOR = 0.4
+MAX_CHUNK_TOKENS = 512
+MIN_CHUNK_TOKENS = 50
+CHUNK_OVERLAP_TOKENS = 64
+RAG_TOP_K_DENSE = 20
+RAG_TOP_K_SPARSE = 20
+RAG_TOP_K_RERANK = 5
+RRF_K = 60
+DENSE_WEIGHT = 0.6
+SPARSE_WEIGHT = 0.4
+RATE_LIMIT_DEFAULT = 60
+RATE_LIMIT_QUERY = 30
+RATE_LIMIT_INGEST = 10
+QDRANT_COLLECTION = "doc_chunks"
+QDRANT_HOST = "localhost"
+REDIS_URL = "redis://localhost:6379/0"
+JWT_ALGORITHM = "HS256"
+JWT_EXPIRY_HOURS = 24
+MAX_REPO_SIZE_MB = 500
+MAX_FILE_SIZE_KB = 500
