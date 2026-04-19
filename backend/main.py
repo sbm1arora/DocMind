@@ -14,6 +14,7 @@ from api.routers.projects import router as projects_router
 from api.routers.queries import router as queries_router
 from api.routers.webhooks import router as webhooks_router
 from api.routers.agents import router as agents_router
+from api.routers.integrations import router as integrations_router
 from db.database import init_db
 from shared.exceptions import (
     AuthenticationError,
@@ -79,6 +80,7 @@ app.include_router(projects_router, prefix=API_PREFIX)
 app.include_router(queries_router, prefix=API_PREFIX)
 app.include_router(webhooks_router, prefix=API_PREFIX)
 app.include_router(agents_router, prefix=API_PREFIX)
+app.include_router(integrations_router, prefix=API_PREFIX)
 app.include_router(health_router, prefix=API_PREFIX)
 
 # ── Exception handlers ────────────────────────────────────────────────────────
