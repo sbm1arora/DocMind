@@ -65,11 +65,11 @@ async def github_webhook(
         # Log security event
         client_ip = request.client.host if request.client else "unknown"
         audit = AuditLog(
-            project_id=str(project.id),
             action="webhook.invalid_signature",
             resource_type="webhook",
+            resource_id=project.id,
             ip_address=client_ip,
-            metadata={"repo": repo_full_name, "event": x_github_event},
+            metadata={"repo": repo_full_name, "event": x_github_event, "project_id": str(project.id)},
         )
         db.add(audit)
         await db.commit()

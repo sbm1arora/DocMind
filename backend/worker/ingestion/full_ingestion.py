@@ -198,7 +198,7 @@ async def handle_full_ingestion(redis: Redis, project_id: str) -> None:
                     language = _detect_language(rel_path)
                     if not language:
                         continue
-                    chunk_tuples = await _process_file(db, project_id, abs_path, abs_path, rel_path)
+                    chunk_tuples = await _process_file(db, project_id, rel_path, abs_path, rel_path)
                     all_chunk_tuples.extend(chunk_tuples)
                     file_count += 1
 

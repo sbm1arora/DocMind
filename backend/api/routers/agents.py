@@ -8,7 +8,7 @@ GET  /api/v1/agents/tasks/{task_id}            — poll task status
 
 import json
 import structlog
-from uuid import UUID, uuid4
+from uuid import UUID
 from fastapi import APIRouter, Depends, Request, status
 from pydantic import BaseModel
 from sqlalchemy import select
@@ -58,7 +58,6 @@ async def _queue_task(
     input_data: dict,
 ) -> AgentTask:
     task = AgentTask(
-        id=str(uuid4()),
         project_id=project_id,
         task_type=task_type,
         status="queued",
