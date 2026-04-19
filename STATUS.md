@@ -1,6 +1,6 @@
 # DocMind — Build Status
 
-**Last updated:** 2026-04-18
+**Last updated:** 2026-04-19
 **Session:** Dave (Shubham-Dave group)
 **Repo:** https://github.com/sbm1arora/DocMind
 **Spec:** ENGINEERING_SPEC.md (repo root)
@@ -28,18 +28,20 @@
 
 ---
 
-## PHASE 1 — Core API Foundation
+## PHASE 1 — Core API Foundation ✅ COMPLETE
 
 | ID | Task | Status | Commit |
 |----|------|--------|--------|
-| T1.1 | FastAPI app entry point (`backend/main.py`) — app init, middleware registration, router mounting, lifespan | ⬜ TODO | — |
-| T1.2 | DB session factory + async engine setup in `db/database.py` | ⬜ TODO | — |
-| T1.3 | Alembic initial migration — create all tables | ⬜ TODO | — |
-| T1.4 | Auth schemas: `UserOut`, `TokenResponse`, `GithubCallbackQuery` in `api/schemas/auth.py` | ⬜ TODO | — |
-| T1.5 | GitHub OAuth router — `GET /api/v1/auth/github` + `GET /api/v1/auth/github/callback` in `api/routers/auth.py` | ⬜ TODO | — |
-| T1.6 | Auth service — exchange code, fetch GitHub user, upsert to DB, issue JWT in `api/services/auth_service.py` | ⬜ TODO | — |
-| T1.7 | `GET /api/v1/auth/me` — return current user from JWT | ⬜ TODO | — |
-| T1.8 | Health check endpoint `GET /api/v1/health` | ⬜ TODO | — |
+| T1.1 | FastAPI app entry point (`backend/main.py`) | ✅ DONE | e5fc9da |
+| T1.2 | DB session factory + async engine setup in `db/database.py` | ✅ DONE | e5fc9da |
+| T1.3 | Alembic initial migration — create all 8 tables | ✅ DONE | e5fc9da |
+| T1.4 | Auth schemas: `UserOut`, `TokenResponse`, `GithubCallbackQuery` | ✅ DONE | e5fc9da |
+| T1.5 | GitHub OAuth router — `GET /api/v1/auth/github` + callback | ✅ DONE | e5fc9da |
+| T1.6 | Auth service — code exchange, user upsert, AES-256-GCM, JWT | ✅ DONE | e5fc9da |
+| T1.7 | `GET /api/v1/auth/me` | ✅ DONE | e5fc9da |
+| T1.8 | Health check endpoint `GET /api/v1/health` | ✅ DONE | e5fc9da |
+
+**Note:** Commit e5fc9da is local — push blocked (Vatsal-AAI lacks write access to sbm1arora/DocMind).
 
 ---
 
@@ -80,7 +82,7 @@
 | T4.3 | Reciprocal Rank Fusion merger (0.6 dense + 0.4 sparse) in `backend/rag/fusion.py` | ⬜ TODO | — |
 | T4.4 | Cohere rerank-v3.5 client in `backend/rag/reranker.py` | ⬜ TODO | — |
 | T4.5 | Claude generation with citations in `backend/rag/generator.py` | ⬜ TODO | — |
-| T4.6 | RAG pipeline orchestrator (query → dense+sparse → RRF → rerank → generate) in `backend/rag/pipeline.py` | ⬜ TODO | — |
+| T4.6 | RAG pipeline orchestrator in `backend/rag/pipeline.py` | ⬜ TODO | — |
 | T4.7 | Query schemas + `POST /api/v1/projects/{id}/query` endpoint | ⬜ TODO | — |
 
 ---
@@ -99,13 +101,13 @@
 | ID | Task | Status | Commit |
 |----|------|--------|--------|
 | T6.1 | Agent base class + Redis task queue consumer in `agents/base_agent.py` | ⬜ TODO | — |
-| T6.2 | Writer Agent — generate README, API_REFERENCE, ARCHITECTURE, GETTING_STARTED using Claude | ⬜ TODO | — |
+| T6.2 | Writer Agent — generate README, API_REFERENCE, ARCHITECTURE, GETTING_STARTED | ⬜ TODO | — |
 | T6.3 | Reviewer Agent — validate doc accuracy against code chunks | ⬜ TODO | — |
 | T6.4 | Quality Critic Agent — coverage score, staleness detection, gap analysis | ⬜ TODO | — |
-| T6.5 | GitHub PR creator service — branch, commit files, open PR via GitHub API | ⬜ TODO | — |
-| T6.6 | `POST /api/v1/projects/{id}/documents/generate` — queue agent task | ⬜ TODO | — |
-| T6.7 | `POST /api/v1/projects/{id}/documents/create-pr` — trigger PR creation | ⬜ TODO | — |
-| T6.8 | `GET /api/v1/agents/tasks/{task_id}` — poll task status | ⬜ TODO | — |
+| T6.5 | GitHub PR creator service | ⬜ TODO | — |
+| T6.6 | `POST /api/v1/projects/{id}/documents/generate` | ⬜ TODO | — |
+| T6.7 | `POST /api/v1/projects/{id}/documents/create-pr` | ⬜ TODO | — |
+| T6.8 | `GET /api/v1/agents/tasks/{task_id}` | ⬜ TODO | — |
 
 ---
 
@@ -113,11 +115,11 @@
 
 | ID | Task | Status | Commit |
 |----|------|--------|--------|
-| T7.1 | FastMCP server init + SSE transport in `mcp_server/server.py` | ⬜ TODO | — |
-| T7.2 | `search_docs` tool — RAG query against any indexed project | ⬜ TODO | — |
-| T7.3 | `get_section` tool — fetch specific doc section by path | ⬜ TODO | — |
-| T7.4 | `check_coverage` tool — return coverage score for a project | ⬜ TODO | — |
-| T7.5 | `flag_issue` tool — create GitHub issue for doc gaps | ⬜ TODO | — |
+| T7.1 | FastMCP server init + SSE transport | ⬜ TODO | — |
+| T7.2 | `search_docs` tool | ⬜ TODO | — |
+| T7.3 | `get_section` tool | ⬜ TODO | — |
+| T7.4 | `check_coverage` tool | ⬜ TODO | — |
+| T7.5 | `flag_issue` tool | ⬜ TODO | — |
 
 ---
 
@@ -125,9 +127,9 @@
 
 | ID | Task | Status | Commit |
 |----|------|--------|--------|
-| T8.1 | Slack events endpoint — Slack signing secret validation, app_mention handler in `api/routers/integrations.py` | ⬜ TODO | — |
-| T8.2 | Slack response formatter — Block Kit with citations + feedback buttons | ⬜ TODO | — |
-| T8.3 | WhatsApp (Twilio) webhook — Twilio signature validation, RAG routing, 1600-char formatter | ⬜ TODO | — |
+| T8.1 | Slack events endpoint | ⬜ TODO | — |
+| T8.2 | Slack Block Kit response formatter | ⬜ TODO | — |
+| T8.3 | WhatsApp (Twilio) webhook | ⬜ TODO | — |
 
 ---
 
@@ -135,10 +137,10 @@
 
 | ID | Task | Status | Commit |
 |----|------|--------|--------|
-| T9.1 | Next.js app scaffold — landing page, GitHub OAuth redirect button | ⬜ TODO | — |
+| T9.1 | Next.js app scaffold — landing page, GitHub OAuth redirect | ⬜ TODO | — |
 | T9.2 | Dashboard — repo list, connect button, project status polling | ⬜ TODO | — |
-| T9.3 | Chat UI — query input, answer display with citations, conversation history | ⬜ TODO | — |
-| T9.4 | Doc viewer — show generated docs with quality scores, edit/approve/create-PR actions | ⬜ TODO | — |
+| T9.3 | Chat UI — query input, citations, conversation history | ⬜ TODO | — |
+| T9.4 | Doc viewer — generated docs with quality scores, edit/approve/create-PR | ⬜ TODO | — |
 
 ---
 
@@ -146,13 +148,14 @@
 
 | Blocker | Status |
 |---------|--------|
-| Cannot run Python locally in Dave container — no FastAPI/SQLAlchemy installed | OPEN — Shubham to test via docker-compose |
+| Cannot run Python locally in Dave container | OPEN — Shubham to test via docker-compose |
+| Vatsal-AAI lacks write access to sbm1arora/DocMind | OPEN — need collaborator access or sbm1arora token |
 
 ---
 
 ## Notes
 
 - Python dependencies: FastAPI, SQLAlchemy (async), Alembic, pydantic-settings, qdrant-client, redis, anthropic, openai, cohere, httpx, structlog, fastmcp
-- All Claude API calls use model: `claude-sonnet-4-6` (latest available)
+- All Claude API calls use model: `claude-sonnet-4-6`
 - Token budget per generation call: max 4096 output tokens
 - Commit convention: `feat(phase-X): T{id} — {description}`
