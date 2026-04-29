@@ -137,19 +137,37 @@
 
 | ID | Task | Status | Commit |
 |----|------|--------|--------|
-| T9.1 | Next.js app scaffold — landing page, GitHub OAuth redirect | ⬜ TODO | — |
-| T9.2 | Dashboard — repo list, connect button, project status polling | ⬜ TODO | — |
-| T9.3 | Chat UI — query input, citations, conversation history | ⬜ TODO | — |
-| T9.4 | Doc viewer — generated docs with quality scores, edit/approve/create-PR | ⬜ TODO | — |
+| T9.1 | Next.js app scaffold — landing page, GitHub OAuth redirect | ✅ DONE | fe187d6 |
+| T9.2 | Dashboard — repo list, connect button, project status polling | ✅ DONE | fe187d6 |
+| T9.3 | Chat UI — query input, citations, conversation history | ✅ DONE | fe187d6 |
+| T9.4 | Doc viewer — generated docs with quality scores, edit/approve/create-PR | ✅ DONE | fe187d6 |
 
 ---
+
+## ALL 9 PHASES COMPLETE ✅
+
+Last commit: fe187d6 (2026-04-29)
+21 commits total | ~4,200+ lines
+
+---
+
+## Environment Setup
+
+To run locally:
+```
+cp .env.example .env   # fill in your keys
+cd infrastructure
+docker-compose up
+```
+Frontend: http://localhost:3000
+API docs: http://localhost:8000/api/docs
 
 ## Blockers
 
 | Blocker | Status |
 |---------|--------|
 | Cannot run Python locally in Dave container | OPEN — Shubham to test via docker-compose |
-| Vatsal-AAI lacks write access to sbm1arora/DocMind | OPEN — need collaborator access or sbm1arora token |
+| Vatsal-AAI lacks write access to sbm1arora/DocMind | RESOLVED — push working via deploy key |
 
 ---
 
