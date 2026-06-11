@@ -23,7 +23,7 @@ DocMind connects to your GitHub repository, indexes the code with semantic embed
 ```
 ┌─────────────┐    OAuth     ┌──────────────┐    pub/sub    ┌──────────────┐
 │  Frontend   │ ──────────► │  FastAPI API  │ ────────────► │   Worker     │
-│  (React)    │             │  (port 8000)  │               │  (ingestion) │
+│  (Next.js)  │             │  (port 8000)  │               │  (ingestion) │
 └─────────────┘             └──────┬───────┘               └──────┬───────┘
                                    │                              │
                             ┌──────▼───────┐    embed     ┌──────▼───────┐
@@ -70,6 +70,7 @@ DocMind connects to your GitHub repository, indexes the code with semantic embed
 | Migrations | Alembic |
 | Logging | structlog (JSON) |
 | MCP transport | SSE (mcp[cli] 1.3.0) |
+| Frontend | Next.js 16 + React 19 + Tailwind CSS |
 
 ---
 
@@ -246,7 +247,7 @@ audit_logs (webhook signature failures, access events)
 - JWT tokens expire after 24 hours (HS256)
 - GitHub webhook signatures validated with HMAC-SHA256 in constant time
 - Slack webhook signatures validated with HMAC-SHA256 + 5-minute replay window
-- Rate limiting on all API endpoints (60 req/min default, 30 for queries)
+- Rate limiting on all API endpoints (60 req/min default; `RATE_LIMIT_QUERY = 30` defined in `shared/constants.py` but not yet wired per-route)
 - All database queries use parameterised statements (SQLAlchemy ORM / `text()`)
 
 ---
