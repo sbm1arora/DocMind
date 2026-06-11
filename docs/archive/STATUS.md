@@ -1,3 +1,8 @@
+> **ARCHIVED 2026-06-11** — Superseded by CLAUDE.md (canonical living agent doc).
+> Kept for reference only. Safe to delete (full history in git).
+
+---
+
 # DocMind — Build Status
 
 **Last updated:** 2026-04-19

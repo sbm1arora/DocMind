@@ -1,3 +1,8 @@
+> **ARCHIVED 2026-06-11** — Superseded by CLAUDE.md (canonical living agent doc).
+> Kept for reference only. Safe to delete (full history in git).
+
+---
+
 # DocMind — Complete Engineering Specification
 
 **Version:** 1.0.0
